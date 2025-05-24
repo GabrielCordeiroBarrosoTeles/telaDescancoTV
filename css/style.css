@@ -1,0 +1,21 @@
+html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            touch-action: none; /* evita zoom/scroll em mobile */
+        }
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        #screen {
+            display: block;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            touch-action: none;
+        }

@@ -15,14 +15,29 @@ let dvd = {
 (function main() {
     canvas = document.getElementById("screen");
     ctx = canvas.getContext("2d");
-    dvd.img.src = 'dvd.png';
+    dvd.img.src = 'img/dvd.png';
 
+    dvd.img.onload = () => {
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        getRandomColor();
+        update();
+    };
+})();
+
+function resizeCanvas() {
+    // Use window.innerWidth/innerHeight para melhor compatibilidade mobile
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    getRandomColor();
-    update();
-})();
+    // Garante que o DVD não fique fora da tela após resize
+    const imgWidth = dvd.img.width * scale;
+    const imgHeight = dvd.img.height * scale;
+    if (dvd.x + imgWidth > canvas.width) dvd.x = canvas.width - imgWidth;
+    if (dvd.y + imgHeight > canvas.height) dvd.y = canvas.height - imgHeight;
+    if (dvd.x < 0) dvd.x = 0;
+    if (dvd.y < 0) dvd.y = 0;
+}
 
 function update() {
     setTimeout(() => {
